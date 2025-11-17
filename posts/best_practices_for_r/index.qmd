@@ -1,0 +1,92 @@
+---
+title: Best Practices for R
+author: Erin Grand
+date: 2025-11-20
+categories: [R]
+image: 'image.jpg'
+---
+
+# R Coding Best Practices & Guidelines
+
+## Projects:
+
+The ideal folder structure should look like this:
+
+-   [projectname].Rproj - R project file (do not commit this to GitHub)
+-   .gitignore - used for git repos so you don’t publish something
+    private
+-   Archive/ - anything from a past run that is no longer needed but
+    should be kept “just in case”
+-   Input/ - mappings or downloaded reports Scripts/ - location for
+    scripts and internal Quarto documents
+-   Reports/ - location for Quatro reports for projects with multiple
+    report documents that all stem from the same project
+-   Output/ - csv or Excel outputs, plots, report PDF location Temp/ -
+    intermediary outputs
+
+## Code structure
+
+The code should be structured as
+
+1.  Load libraries
+2.  Define functions; do not define functions inside other functions
+3.  Gather all data
+4.  Clean all data
+5.  Analysis
+6.  Build reports
+
+For larger projects, code should often be broken down into several
+scripts. Naming conventions could follow: 00_functions.R, 01_get_data.R,
+02_clean_data.R , … etc
+
+### Plan for the future of the project Code documentation
+
+1.  Create a project README file to include the context of the project
+    and data.
+    1.  Any planning documents should be linked here.
+2.  Use code comments to let future code users know WHY you did
+    something, not what it is doing.
+3.  Use NOTE, TODO, ...etc to help you find important things (like
+    changing a hardcoded variable for the following year)
+    2.  The todor package is an excellent add-in for RStudio. It lists
+        out the notes, comments, and location of your notes throughout
+        the project directory.
+4.  Link to any supplemental documentation in the project and/or code
+
+Unit testing:
+
+1.  Use assertr functions to be certain that aspects that you expect of
+    the data are not changing, and if they do change, they will cause an
+    error 2. Check your data as you go to confirm it looks like what you
+    expect it to 3. Get a code review before publishing the output a.
+    Policy: Code on GitHub needs sign-off before publishing results
+
+Safety first Do NOT ever hardcode usernames & passwords into your code.
+Use the .Renviorn file (via usethis::edit_r_environ()) to store
+usernames & passwords and call them using `Sys.getenv()`
+
+Follow data privacy best practices, particularly as they relate to
+GitHub and Google Drive. Do not publish raw data with identifiable
+information in a public place. 5. General best practices - Use the
+tidyverse version of the functions whenever possible because they often
+have better defaults and documentation
+
+e.g. `read_csv()` instead of `read.csv()` or `if_else()` instead of
+`ifelse()`
+
+Team Package Widely used functions should be put in the central team
+package.
+
+## R Packages You Should Know
+
+-   janitor
+-   assertr
+-   googlesheets4, googledrive
+-   skimr
+-   here
+-   usethis
+
+
+For any businesses interested in hiring a data scientist with over 10 years 
+of work experience, be it for freelance, part time, 
+or full time opportunities, please contact me at eringrand@gmail.com
