@@ -1,5 +1,5 @@
 ---
-title: "new_blog"
+title: "Erin Grand"
 listing:
   contents: posts
   feed: true

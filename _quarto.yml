@@ -3,21 +3,24 @@ project:
 
 website:
   description: "A blog built with Quarto"
-  site-url: https://your-website-url.example.com # you must change this appropriately for RSS feeds to work properly
-  title: "new_blog"
+  site-url: https://eringrand.github.io # you must change this appropriately for RSS feeds to work properly
+  title: "Erin Grand"
   navbar:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/
+        href: https://github.com/eringrand
       - icon: twitter
-        href: https://twitter.com
+        href: https://twitter.com/astroeringrand
+      - icon: rss
+        href: index.xml
 format:
   html:
     theme:
       - cosmo
       - brand
     css: styles.css
-
-editor: visual
+    
+execute:
+  freeze: auto
 
