@@ -2,8 +2,8 @@
 title: Faces of rstudioconf
 author: Erin Grand
 date: 2018-02-15
-categories: [R, twitter, rstudioconf]
-image: 'image.jpg'
+categories: [R, twitter, conference]
+image: '2018-02-7-facesofnasadatanauts.jpg'
 ---
 
 I was reminded today by [Daniela](https://twitter.com/d4tagirl) that everyone should blog - and on top of that you can totally blog something small and simple just to get something out there.
@@ -35,7 +35,7 @@ library(tidyverse)
 library(gmp)
 ```
 
-```r
+``` r
 search_terms <- c("rstudioconf", "rstudioconf2018")
 
 tweets <- purrr::map_df(search_terms, search_tweets, n=2000, include_rts=FALSE, parse=TRUE) 
