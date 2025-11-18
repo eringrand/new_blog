@@ -6,13 +6,11 @@ categories: [sentiment, tidytext, R]
 image: 'image.jpg'
 ---
 
-I’m about to BARE MY SOUL to the internet. Well, the soul of my teenage
-self. Get ready!
+I’m about to BARE MY SOUL to the internet. Well, the soul of my teenage self. Get ready!
 
 Live Journal, you may remember, was(/is - it does still exist) was a blogging site before we really knew what blogging was. It was both a place to put diary entries and those quizzes that got passed around in the day. It was also used for FanFic and community gathering. I did NOT use my (main) account for fan gathering. (Though I did write some excellent/terrible fanfics. Didn't everyone have a Lord of Rings self-insert character?)
 
 I don't really remember when I started this idea, but I thought it would be fun to see just how emo I was in 2006. Let's go!
-
 
 ## Step 0: Load the libraries
 
@@ -27,16 +25,9 @@ library(cowplot)
 
 ## Step 1: Clean the data
 
-I downloaded all my past Live Journal entities to a folder on my desktop
-in the same CSV format, so that I could easily load them in for
-analysis. I am pleasantly surprised that Live Journal made it so easy to
-download my history like this! I did have to click the same button a ton
-of time - but I did get all my data.
+I downloaded all my past Live Journal entities to a folder on my desktop in the same CSV format, so that I could easily load them in for analysis. I am pleasantly surprised that Live Journal made it so easy to download my history like this! I did have to click the same button a ton of time - but I did get all my data.
 
-
-The next step was to take every journal and separate out the individual
-words using
-‘[tidytext](https://cran.r-project.org/web/packages/tidytext/vignettes/tidytext.html).’
+The next step was to take every journal and separate out the individual words using ‘[tidytext](https://cran.r-project.org/web/packages/tidytext/vignettes/tidytext.html).’
 
 ``` r
 lj_words <- lj_df %>%
@@ -49,16 +40,9 @@ lj_words <- lj_df %>%
   unnest_tokens(word, event, token = "words", format = "html", strip_url = FALSE) 
 ```
 
-Not included in this blog post, for privacy of my teenage friends, I
-also cleaned and changed names of my friends and locations to clean the
-data and protect their privacy. For example, instead of the name “Linda”
-you may see “nameofsister”.
+Not included in this blog post, for privacy of my teenage friends, I also cleaned and changed names of my friends and locations to clean the data and protect their privacy. For example, instead of the name “Linda” you may see “nameofsister”.
 
-I was (and continue to be) terrible at spelling words correctly and also
-terrible at checking what I’ve typed after the fact. I use ‘Hunspell’
-here in an attempt to fix some of the most common issues. Does this
-spell check get everything? No! But alas, I am a terrible speller and we
-move on in life.
+I was (and continue to be) terrible at spelling words correctly and also terrible at checking what I’ve typed after the fact. I use ‘Hunspell’ here in an attempt to fix some of the most common issues. Does this spell check get everything? No! But alas, I am a terrible speller and we move on in life.
 
 ``` r
 lj_words_spell_check <- lj_words_protect %>%
@@ -92,12 +76,7 @@ The data is clean, or at least as clean as it is going to get today.
 
 ### Word counts
 
-I start with TF-IDF. The goal here is to see what I was talking about
-each year and how it may differ as I got older. As a reminder, I have
-changed the names of all my friends and family for privacy. That way you
-don’t know who “nameofbestfriend” is and why I stopped mentioning
-“nameofbestfriend” in 2006. (We had a bit of a falling out at the end of
-HS.)
+I start with TF-IDF. The goal here is to see what I was talking about each year and how it may differ as I got older. As a reminder, I have changed the names of all my friends and family for privacy. That way you don’t know who “nameofbestfriend” is and why I stopped mentioning “nameofbestfriend” in 2006. (We had a bit of a falling out at the end of HS.)
 
 ``` r
 tfidf <- lj_words_corrected %>%
@@ -110,12 +89,11 @@ tfidf <- lj_words_corrected %>%
   filter(n >= 2) 
 ```
 
-![]({{ site.baseurl }}/images/2022-06-28-LJ_files/figure-markdown_github/unnamed-chunk-12-1.png)
+![](2022-06-28-LJ_files/figure-markdown_github/unnamed-chunk-12-1.png)
 
 Look at 2009 - clearly my only entries were my Norse myth college class. I remember I put a few of my class papers on my Live Journal.
 
-We can look at the differences between TF-IDF and a regular word count,
-while accounting for stop words.
+We can look at the differences between TF-IDF and a regular word count, while accounting for stop words.
 
 ``` r
 wordcount <- lj_words_corrected %>%
@@ -127,13 +105,11 @@ wordcount <- lj_words_corrected %>%
   filter(n >= 3) 
 ```
 
-![]({{ site.baseurl }}/images/2022-06-28-LJ_files/figure-markdown_github/unnamed-chunk-14-1.png)
+![](2022-06-28-LJ_files/figure-markdown_github/unnamed-chunk-14-1.png)
 
 ### Sentiment
 
-Next I look at sentiment. I remember using live journal to be super
-*angsty*. I assumed that I would largely see negative sentiment and
-words across the years.
+Next I look at sentiment. I remember using live journal to be super *angsty*. I assumed that I would largely see negative sentiment and words across the years.
 
 ``` r
 df_plot <- lj_words_corrected %>%
@@ -154,15 +130,13 @@ df_plot <- lj_words_corrected %>%
          ) 
 ```
 
-Instead, it seems my words were largely more positive then negative.
-(Outside of 2009 - which is either largely from my anxiety attacks that year or Norse mythology is just super depressing.) Not as ansgty as I remember!
+Instead, it seems my words were largely more positive then negative. (Outside of 2009 - which is either largely from my anxiety attacks that year or Norse mythology is just super depressing.) Not as ansgty as I remember!
 
-![]({{ site.baseurl }}/images/2022-06-28-LJ_files/figure-markdown_github/unnamed-chunk-16-1.png)
+![](2022-06-28-LJ_files/figure-markdown_github/unnamed-chunk-16-1.png)
 
-Ah, but did I mark my “current mood” / how are you feeling” part as
-positive as my words are? You be the judge.
+Ah, but did I mark my “current mood” / how are you feeling” part as positive as my words are? You be the judge.
 
-![]({{ site.baseurl }}/images/2022-06-28-LJ_files/figure-markdown_github/unnamed-chunk-18-1.png)
+![](2022-06-28-LJ_files/figure-markdown_github/unnamed-chunk-18-1.png)
 
 ## End :)
 
