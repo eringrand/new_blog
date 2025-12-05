@@ -6,11 +6,11 @@ categories: [blog, quarto]
 image: '3vr9n0.jpg'
 ---
 
-I started my blogging journey as a homework assignment in grad school. At the time, Jekyll was new, exciting, and easy to spin up. I found a theme I liked, contributed to the theme on GitHub so it had all the elements I needed, got an internship from the person who ran the theme (Thanks Barry!), and stuck with it till now.
+I started my blogging journey as a homework assignment in grad school. At the time, Jekyll was new, exciting, and easy to spin up. I found a theme I liked, contributed to it on GitHub to add all the elements I needed, got an internship from the person who ran the theme (Thanks, Barry!), and stuck with it till now.
 
-There's nothing wrong with my (old?) blog, but I've been using Quarto docs in my work-life and wanted to experiment with Quarto powering my blog. I don't write a new post very often, so I also don't have *that* many posts to transition. It seemed like a fun challenge!
+There's nothing wrong with my (old?) blog, but I've been using Quarto docs at work and wanted to experiment with Quarto powering my blog. I don't write new posts very often, so I also don't have *that* many posts to transition. It seemed like a fun challenge!
 
-## Task 1: Get old blog file structure into new file structure
+## Task 1: Get old blog file structure into the new file structure
 
 A Quarto blogs file tree look like:
 
@@ -30,9 +30,9 @@ A Quarto blogs file tree look like:
 └── styles.css
 ```
 
-with each post having it's own sub-folder under the *posts* directory. The text of each post is inside an index.qmd file, which contains date and tag metadata in the yaml.
+Each post has its own sub-folder under the *posts* directory. The text of each post is inside an index.qmd file, which contains date and tag metadata in the YAML.
 
-On the other hand, my Jekyll blog directory looks like has markdown files under the \_posts folder.
+On the other hand, my Jekyll blog posts are markdown files under the *_posts* folder, organized by date in the filename. 
 
 ```         
   ├── 404.md
@@ -46,19 +46,15 @@ On the other hand, my Jekyll blog directory looks like has markdown files under 
   ├── _sass
   ├── about.md
   ├── archive.html
-  ├── feed.xml
-  ├── htmlwidgets_deps
   ├── images
   │   ├── 404.jpg
   │   └── stockphoto.png
   ├── index.html
-  ├── projects.md
   ├── style.scss
   ├── tag_index.html
-  └── teaching.md
 ```
 
-So the first task is to convert all my markdown blog posts into their own sub-folder under a *posts* directory. I would also like to grab any and all meta data out of the posts while doing so.
+So the first task was to convert all my Markdown blog posts into their own subfolder under the *posts* directory. I would also like to grab any metadata out of the posts while doing so.
 
 ```r
 library(tidyverse)
@@ -93,9 +89,9 @@ posts_info <- posts_raw |>
          ) 
 ```
 
-I then did a bunch of text cleaning of my tags/categories, but honestly I ended up rewriting them manually anyway, so I'm going to ignore that code for now.
+I then cleaned up a bunch of text in my tags/categories, but I ended up rewriting them manually anyway, so I'm going to ignore that code for now.
 
-With all the post information, and most of the meta data, now I could write the new post structure and files.
+With all the post information and most of the metadata, I could now write out the new post structure and files.
 
 ```r
 fill_between <- function(x) {
@@ -130,7 +126,7 @@ posts_all <- posts_info |>
   select(dir_title, new_post_txt)
 ```
 
-Now with the posts written in the way I wanted them, I just had to create the new sub-folders, and write the posts out into individual index.qmd files.
+With the posts written the way I wanted them, I just had to create the new sub-folders and write the posts out into individual index files.qmd files.
 
 ```r
 walk(pull(posts_all, dir_title), ~dir.create(glue::glue("posts/{.x}")))
@@ -139,16 +135,15 @@ walk2(pull(posts_all, dir_title), pull(posts_all, new_post_txt), ~writeLines(.y,
 
 ## Task 2: Render the Blog and Fix all the Errors
 
-A significant number of my posts stopped working due to links that didn't go anywhere, and images that I didn't grab from the original posts. (Whoops! Next time, automate image file moving as well.) I didn't have that many blog posts, so I it was not a huge lift for me to manually test each post and edit the text to have correct image links (where possible).
+A significant number of my posts stopped working because links didn't go anywhere, and I didn't grab images from the original posts. (Whoops! Next time, automate image file moving as well.) I didn't have that many blog posts, so it wasn't a massive lift for me to manually test each post and edit the text to include correct image links (where possible).
 
 I also went in and changed most of the *categories* because my old tags didn't make as much sense to me anymore. (It's an R blog! Does every post need a #tidyverse tag? Probably not.)
 
-This left with a functional blog!
 
 ## Task 3: Make Blog Pretty!
 
-Erin, you ask, this blog doesn't any different from the default theme? Did you finish the new blog??? Dear reader, no, I have not. I'm trying out some themes, and taking a stab at css and `brand.yml`, but none of those things are ready for Prime Time yet.
+Erin, this blog isn't any different from the default theme?! Did you finish the new blog??? Dear reader, no, I have not. I'm trying out some themes and taking a stab at CSS and brand.yml, but none of those things are ready for Prime Time yet.
 
 # Wrap Up
 
-What blog engine do you use? Do you like the Quarto style of blog, or still use Rmarkdown `blogdown` or something else? Let's talk about it on blue-sky @eringrand. (...because I have *not* added comments capabilities to this blog yet!)
+What blog engine do you use? Do you like the Quarto style of blog, or still use Rmarkdown `blogdown` or something else? Let's talk about it on bluesky (Find me @eringrand, because I have *not* added comments capabilities to this blog yet!)
