@@ -3,7 +3,7 @@ title: R in the World of Education
 author: Erin Grand
 date: 2017-12-30
 categories: [R, data science, education, rladies]
-image: http://media3.giphy.com/media/3oKIPCSX4UHmuS41TG/giphy-downsized.gif
+image: 'DQ4lewSWAAATBry.jpeg'
 ---
 
 I recently gave a r-ladies presentation about my work cleaning and working with really messy education data. This blog post is an attempt at summarizing the main points of the talk.
@@ -85,7 +85,7 @@ I like using `janitor` over writing my own code because, (1) functions are well 
 
 I'm often tasked with cleaning roster files, which contain entry and exit data for students. These files can be very messy due to students who moved between schools or were not exited properly from the system, causing duplicates.
 
-To clean this data, first I read it in with `read_excel` and use `janitor's` `clean_names` to convert all the column names to something I can use. `remove_empty_cols` and `remove_empty_rows` remove entire columns or rows that are NA as excel sometimes can't tell where there is data and where there isn't.
+To clean this data, first I read it in with `read_excel` and use `janitor's` `clean_names` to convert all the column names to something I can use. `remove_empty()` removes entire columns or rows that are NA as excel sometimes can't tell where there is data and where there isn't.
 
 I choose to use `col_type = "text"` in my `read_excel` statement, because I sometimes have to deal with leading zeros, NAs that are not written as NAs, or other text fields in my numerical columns. Reading in as text and converting later allows me to find and correct problems before they become NAs. I use `mutate_at` to convert these columns back to numbers after examining that everything looks good.
 
@@ -178,7 +178,7 @@ If you're curious to other parts of the code that really changed this process (f
 
 # Wrap Up
 
-These changes didn't come easy for my team. I work with a group of extremely smart people, but before I started with Uncommon most people on my team didn't code at all let alone use R. It's been part of my job to teach everyone to write in R, and make sure we're all using best practices. One day I will write a longer blog post about some of the learnings I've had throughout this process, so stay tuned for that! In the mean time, I offer you some closing remarks on what I've found to work best.
+These changes didn't come easy for my team. I work with a group of extremely smart people, but before I started with Uncommon most people on my team didn't code at all let alone use R. It's been part of my job to teach everyone to write in R, and make sure we're all using best practices. One day I will write a longer blog post about some of the leanings I've had throughout this process, so stay tuned for that! In the mean time, I offer you some closing remarks on what I've found to work best.
 
 -   Choose the packages to teach that are needed every day. (For me, this was `janitor` and `dplyr`)
 -   Have someone that is active in R community, so that you can be on the cutting edge of best practices and new packages.

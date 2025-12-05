@@ -2,8 +2,8 @@
 title: Twitter's Favorite Lesser Known Packages
 author: Erin Grand
 date: 2020-06-30
-categories: [R]
-image: 'image.jpg'
+categories: [R, twitter]
+image: 'logo.jpg'
 ---
 
 At the 2018 December NYC R Ladies meetup (yes this post has been sitting in my drafts for over a year), a group started talking about how a few tiny functions in a lesser-known package can provide you with serious magic. The problem is finding those packages and functions! With so many amazing packages on CRAN and GitHub, how do you even begin to search? One way - ask all your twitter followers what they think, and twitter did not disappoint - so here are some examples of *amazing* packages and functions you might want to learn about.

@@ -1,8 +1,8 @@
 ---
-title: Graphics and Plots in Science
+title: Graphics in Science
 author: Erin Grand
 date: 2015-03-24
-categories: [visualization, data science, ggplot, python, R]
+categories: [visualization, data science, python, R]
 image: 'spectrapel.png'
 ---
 
@@ -86,7 +86,7 @@ For example, below is the original plot from my research showing the intensity o
 
 In fixing the graphic, while also including more information from my other sources, I separated out the each of the molecules and sources into a table of spectra. This un-clutters the plot and allows you to more easily visualize trends in the sources. (Notice how the plot is missing axes labels - shame on me!)
 
-![Velocity spectra for the pillars show brightness temperature against velocity in km/s. The spectra were taken in the heads of the pillars at the peak brightness and averaged over a beam size.](spectra2.png) 
+![Velocity spectra for the pillars show brightness temperature against velocity in km/s. The spectra were taken in the heads of the pillars at the peak brightness and averaged over a beam size.](spectra2.png)
 
 The code for this plot was done in IDL - a language mostly used only by astronomers (after looking at the code, you'll see why no one else joined in the fun...) If you're interested, you can check it out [here](https://github.com/eringrand/idlcodes/blob/master/plotspectra.pro).
 
@@ -131,13 +131,13 @@ The image from an article titled "MOLECULAR CLOUDS IN THE NORTH AMERICAN AND PEL
 
 This is a perfect example of trying to show too much in one plot such that it's no longer understandable. A different color scheme would help the eye more easily see the trends in velocity. I would also like to see the circles filled in, and the background map a bit darker. Also, The graph extends too far up so that the color legend is clear, but leaves too much empty space in the graph. The axes and tick marks could also be smaller.
 
-I didn't have their data, but I remade a similar type of plot pulling points, velocities and sizes from normal distributions (see code below). 
+I didn't have their data, but I remade a similar type of plot pulling points, velocities and sizes from normal distributions (see code below).
 
 ![](Rplot.png)
 
 This image fixes some of the problem by using GGPLOT default color scheme, which keeps the hue in blue and changes the brightness. I've filled in the circle in make the difference in sizes more clear, and I made sure that the circles are scaled by area, as to not conflate radius and area.
 
-```r         
+``` r
 library(ggplot2) 
 
 xvar <- sample(-100:100,100,replace=T)
@@ -162,5 +162,6 @@ ggplot(data,aes(x=x,y=y), legend=FALSE)+
 
 ------------------------------------------------------------------------
 
-### Conclusions: 
+### Conclusions:
+
 \* Always remember to think about the story your telling and how your graphic fits in. \* Label your plots correctly, but don't clog the plot with text. Keep your labels short, and rotate them if needed to to be read. \* If displaying all of your data looks cluttered, think about if you really need to show all of it, and if so if there's a better way to display it. \* Watch out for color! We like pretty graphs, but only if we can still read them.
