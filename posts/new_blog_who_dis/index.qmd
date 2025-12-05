@@ -1,0 +1,165 @@
+---
+title: "New Blog - Who Dis?"
+author: Erin Grand
+date: 2025-12-05
+categories: [blog, quarto]
+image: '3vr9n0.jpg'
+---
+
+I started my blogging journey as a homework assignment in grad school. At the time, Jekyll was new, exciting, and easy to spin up. I found a theme I liked, contributed to the theme on GitHub so it had all the elements I needed, got an internship from the person who ran the theme (Thanks Barry!), and stuck with it till now.
+
+There's nothing wrong with my (old?) blog, but I've been using Quarto docs in my work-life and wanted to experiment with Quarto powering my blog. I don't write a new post very often, so I also don't have *that* many posts to transition. It seemed like a fun challenge!
+
+## Task 1: Get old blog file structure into new file structure
+
+A Quarto blogs file tree look like:
+
+```         
+├── 404.html
+├── 404.jpg
+├── CNAME
+├── _quarto.yml
+├── about.qmd
+├── index.qmd
+├── posts
+│   ├── _metadata.yml
+│   ├── my_first_post
+│   │   └── index.qmd
+│   │   ├── stockphoto.png
+├── profile.png
+└── styles.css
+```
+
+with each post having it's own sub-folder under the *posts* directory. The text of each post is inside an index.qmd file, which contains date and tag metadata in the yaml.
+
+On the other hand, my Jekyll blog directory looks like has markdown files under the \_posts folder.
+
+```         
+  ├── 404.md
+  ├── CNAME
+  ├── _config.yml
+  ├── _includes
+  ├── _layouts
+  ├── _plugins
+  ├── _posts
+  │   ├── 2015-02-15-my_first_blog.md
+  ├── _sass
+  ├── about.md
+  ├── archive.html
+  ├── feed.xml
+  ├── htmlwidgets_deps
+  ├── images
+  │   ├── 404.jpg
+  │   └── stockphoto.png
+  ├── index.html
+  ├── projects.md
+  ├── style.scss
+  ├── tag_index.html
+  └── teaching.md
+```
+
+So the first task is to convert all my markdown blog posts into their own sub-folder under a *posts* directory. I would also like to grab any and all meta data out of the posts while doing so.
+
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+
+# md posts filenames & location
+posts <- list.files("../../../sites/eringrand.github.io.raw/_posts/", full.names = TRUE)
+
+posts_raw <- data.frame(post_loc  = posts, # full filepath
+                        post_name = basename(posts) # just the file name
+                        ) |> 
+  rowwise() |> 
+  # use list-frame to read in post text
+  mutate(post = list(data.frame(txt = readLines(post_loc))))
+
+# post meta data
+posts_info <- posts_raw |> 
+  mutate(date = str_sub(post_name, 1, 10), # Jekyll post filenames all start with the date
+         author = "Erin Grand" 
+         ) |> 
+  # grab metadata from the text of the post itself
+  mutate(title = filter(post, str_detect(txt, "title:")) |> pull(txt), 
+         title = str_remove(title, "title:") |> 
+           str_remove_all("[[:punct:]]") |> 
+           str_trim(),
+         # this may be different depending on how your blog does tags
+         categories = filter(post, str_detect(txt, "tags:")) |> 
+                             pull(txt) |> 
+                             str_remove("tags:") |> 
+                             str_remove_all("[[:punct:]]") |> 
+                             str_trim() |> 
+                             str_c(collapse = ", "),
+         ) |> 
+  select(post, title, date, categories, author)
+```
+
+```{r}
+tail(posts_info)
+```
+
+I then did a bunch of text cleaning of my tags/categories, but honestly I ended up rewriting them manually anyway, so I'm going to ignore that code for now.
+
+With all the post information, and most of the meta data, now I could write the new post structure and files.
+
+```{r}
+fill_between <- function(x) {
+  x_log = str_detect(x, "---")
+  
+  # Find the indices of the first and last TRUE
+  first_true_index <- which(x_log)[1]
+  last_true_index <- which(x_log)[2]
+
+  # Create a range of indices to fill
+  indices_to_fill <- first_true_index:last_true_index
+
+  # Set all values within this range to TRUE
+  return(x[-indices_to_fill])
+}
+
+posts_all <- posts_info |> 
+  mutate(post_txt = list(data.frame(x = fill_between(pull(post, txt)))), # continue to use list-frames
+         # new yaml headers, with date and tags
+         yml_txt = (con = glue::glue("---
+                                     title: {title}
+                                     author: {author}
+                                     date: {date}
+                                     categories: [{categories}]
+                                     image: 'image.jpg'
+                                     ---")
+                    ),
+         yml_txt = list(data.frame(readLines(textConnection(yml_txt)))),
+         new_post_txt = list(bind_rows(yml_txt, post_txt) |> pull(x)),
+         dir_title = janitor::make_clean_names(title)
+         ) |> 
+  select(dir_title, new_post_txt)
+```
+
+```{r}
+head(posts_all)
+```
+
+Now with the posts written in the way I wanted them, I just had to create the new sub-folders, and write the posts out into individual index.qmd files.
+
+``` r
+walk(pull(posts_all, dir_title), ~dir.create(glue::glue("posts/{.x}")))
+walk2(pull(posts_all, dir_title), pull(posts_all, new_post_txt), ~writeLines(.y, glue::glue("posts/{.x}/index.qmd")))
+```
+
+## Task 2: Render the Blog and Fix all the Errors
+
+A significant number of my posts stopped working due to links that didn't go anywhere, and images that I didn't grab from the original posts. (Whoops! Next time, automate image file moving as well.) I didn't have that many blog posts, so I it was not a huge lift for me to manually test each post and edit the text to have correct image links (where possible).
+
+I also went in and changed most of the *categories* because my old tags didn't make as much sense to me anymore. (It's an R blog! Does every post need a #tidyverse tag? Probably not.)
+
+This left with a functional blog!
+
+## Task 3: Make Blog Pretty!
+
+Erin, you ask, this blog doesn't any different from the default theme? Did you finish the new blog??? Dear reader, no, I have not. I'm trying out some themes, and taking a stab at css and `brand.yml`, but none of those things are ready for Prime Time yet.
+
+# Wrap Up
+
+What blog engine do you use? Do you like the Quarto style of blog, or still use Rmarkdown `blogdown` or something else? Let's talk about it on blue-sky @eringrand. (...because I have *not* added comments capabilities to this blog yet!)
