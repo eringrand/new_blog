@@ -60,13 +60,11 @@ On the other hand, my Jekyll blog directory looks like has markdown files under 
 
 So the first task is to convert all my markdown blog posts into their own sub-folder under a *posts* directory. I would also like to grab any and all meta data out of the posts while doing so.
 
-```{r}
-#| message: false
-#| warning: false
+```r
 library(tidyverse)
 
 # md posts filenames & location
-posts <- list.files("../../../sites/eringrand.github.io.raw/_posts/", full.names = TRUE)
+posts <- list.files("eringrand.github.io.raw/_posts/", full.names = TRUE)
 
 posts_raw <- data.frame(post_loc  = posts, # full filepath
                         post_name = basename(posts) # just the file name
@@ -92,19 +90,14 @@ posts_info <- posts_raw |>
                              str_remove_all("[[:punct:]]") |> 
                              str_trim() |> 
                              str_c(collapse = ", "),
-         ) |> 
-  select(post, title, date, categories, author)
-```
-
-```{r}
-tail(posts_info)
+         ) 
 ```
 
 I then did a bunch of text cleaning of my tags/categories, but honestly I ended up rewriting them manually anyway, so I'm going to ignore that code for now.
 
 With all the post information, and most of the meta data, now I could write the new post structure and files.
 
-```{r}
+```r
 fill_between <- function(x) {
   x_log = str_detect(x, "---")
   
@@ -137,13 +130,9 @@ posts_all <- posts_info |>
   select(dir_title, new_post_txt)
 ```
 
-```{r}
-head(posts_all)
-```
-
 Now with the posts written in the way I wanted them, I just had to create the new sub-folders, and write the posts out into individual index.qmd files.
 
-``` r
+```r
 walk(pull(posts_all, dir_title), ~dir.create(glue::glue("posts/{.x}")))
 walk2(pull(posts_all, dir_title), pull(posts_all, new_post_txt), ~writeLines(.y, glue::glue("posts/{.x}/index.qmd")))
 ```
