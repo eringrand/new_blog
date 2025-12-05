@@ -146,4 +146,6 @@ Erin, this blog isn't any different from the default theme?! Did you finish the 
 
 # Wrap Up
 
+This is very much a trial run for me. I like Quarto, but I got used to Jekyll and change is not always my favorite thing. Do you have tips I should use for this new adventure? 
+
 What blog engine do you use? Do you like the Quarto style of blog, or still use Rmarkdown `blogdown` or something else? Let's talk about it on bluesky (Find me @eringrand, because I have *not* added comments capabilities to this blog yet!)
