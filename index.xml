@@ -21,10 +21,10 @@
 
 
 
-<p>I started my blogging journey as a homework assignment in grad school. At the time, Jekyll was new, exciting, and easy to spin up. I found a theme I liked, contributed to the theme on GitHub so it had all the elements I needed, got an internship from the person who ran the theme (Thanks Barry!), and stuck with it till now.</p>
-<p>There’s nothing wrong with my (old?) blog, but I’ve been using Quarto docs in my work-life and wanted to experiment with Quarto powering my blog. I don’t write a new post very often, so I also don’t have <em>that</em> many posts to transition. It seemed like a fun challenge!</p>
-<section id="task-1-get-old-blog-file-structure-into-new-file-structure" class="level2">
-<h2 class="anchored" data-anchor-id="task-1-get-old-blog-file-structure-into-new-file-structure">Task 1: Get old blog file structure into new file structure</h2>
+<p>I started my blogging journey as a homework assignment in grad school. At the time, Jekyll was new, exciting, and easy to spin up. I found a theme I liked, contributed to it on GitHub to add all the elements I needed, got an internship from the person who ran the theme (Thanks, Barry!), and stuck with it till now.</p>
+<p>There’s nothing wrong with my (old?) blog, but I’ve been using Quarto docs at work and wanted to experiment with Quarto powering my blog. I don’t write new posts very often, so I also don’t have <em>that</em> many posts to transition. It seemed like a fun challenge!</p>
+<section id="task-1-get-old-blog-file-structure-into-the-new-file-structure" class="level2">
+<h2 class="anchored" data-anchor-id="task-1-get-old-blog-file-structure-into-the-new-file-structure">Task 1: Get old blog file structure into the new file structure</h2>
 <p>A Quarto blogs file tree look like:</p>
 <pre><code>├── 404.html
 ├── 404.jpg
@@ -39,8 +39,8 @@
 │   │   ├── stockphoto.png
 ├── profile.png
 └── styles.css</code></pre>
-<p>with each post having it’s own sub-folder under the <em>posts</em> directory. The text of each post is inside an index.qmd file, which contains date and tag metadata in the yaml.</p>
-<p>On the other hand, my Jekyll blog directory looks like has markdown files under the _posts folder.</p>
+<p>Each post has its own sub-folder under the <em>posts</em> directory. The text of each post is inside an index.qmd file, which contains date and tag metadata in the YAML.</p>
+<p>On the other hand, my Jekyll blog posts are markdown files under the *_posts* folder, organized by date in the filename.</p>
 <pre><code>  ├── 404.md
   ├── CNAME
   ├── _config.yml
@@ -52,17 +52,13 @@
   ├── _sass
   ├── about.md
   ├── archive.html
-  ├── feed.xml
-  ├── htmlwidgets_deps
   ├── images
   │   ├── 404.jpg
   │   └── stockphoto.png
   ├── index.html
-  ├── projects.md
   ├── style.scss
-  ├── tag_index.html
-  └── teaching.md</code></pre>
-<p>So the first task is to convert all my markdown blog posts into their own sub-folder under a <em>posts</em> directory. I would also like to grab any and all meta data out of the posts while doing so.</p>
+  ├── tag_index.html</code></pre>
+<p>So the first task was to convert all my Markdown blog posts into their own subfolder under the <em>posts</em> directory. I would also like to grab any metadata out of the posts while doing so.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(tidyverse)</span>
@@ -235,8 +231,8 @@ font-style: inherit;">collapse =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">", "</span>),</span>
 <span id="cb3-30">         ) </span></code></pre></div></div>
-<p>I then did a bunch of text cleaning of my tags/categories, but honestly I ended up rewriting them manually anyway, so I’m going to ignore that code for now.</p>
-<p>With all the post information, and most of the meta data, now I could write the new post structure and files.</p>
+<p>I then cleaned up a bunch of text in my tags/categories, but I ended up rewriting them manually anyway, so I’m going to ignore that code for now.</p>
+<p>With all the post information and most of the metadata, I could now write out the new post structure and files.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">fill_between <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
@@ -378,7 +374,7 @@ font-style: inherit;">|&gt;</span> </span>
 <span id="cb4-30">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">select</span>(dir_title, new_post_txt)</span></code></pre></div></div>
-<p>Now with the posts written in the way I wanted them, I just had to create the new sub-folders, and write the posts out into individual index.qmd files.</p>
+<p>With the posts written the way I wanted them, I just had to create the new sub-folders and write the posts out into individual index files.qmd files.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">walk</span>(<span class="fu" style="color: #4758AB;
@@ -414,17 +410,16 @@ font-style: inherit;">"posts/{.x}/index.qmd"</span>)))</span></code></pre></div>
 </section>
 <section id="task-2-render-the-blog-and-fix-all-the-errors" class="level2">
 <h2 class="anchored" data-anchor-id="task-2-render-the-blog-and-fix-all-the-errors">Task 2: Render the Blog and Fix all the Errors</h2>
-<p>A significant number of my posts stopped working due to links that didn’t go anywhere, and images that I didn’t grab from the original posts. (Whoops! Next time, automate image file moving as well.) I didn’t have that many blog posts, so I it was not a huge lift for me to manually test each post and edit the text to have correct image links (where possible).</p>
+<p>A significant number of my posts stopped working because links didn’t go anywhere, and I didn’t grab images from the original posts. (Whoops! Next time, automate image file moving as well.) I didn’t have that many blog posts, so it wasn’t a massive lift for me to manually test each post and edit the text to include correct image links (where possible).</p>
 <p>I also went in and changed most of the <em>categories</em> because my old tags didn’t make as much sense to me anymore. (It’s an R blog! Does every post need a #tidyverse tag? Probably not.)</p>
-<p>This left with a functional blog!</p>
 </section>
 <section id="task-3-make-blog-pretty" class="level2">
 <h2 class="anchored" data-anchor-id="task-3-make-blog-pretty">Task 3: Make Blog Pretty!</h2>
-<p>Erin, you ask, this blog doesn’t any different from the default theme? Did you finish the new blog??? Dear reader, no, I have not. I’m trying out some themes, and taking a stab at css and <code>brand.yml</code>, but none of those things are ready for Prime Time yet.</p>
+<p>Erin, this blog isn’t any different from the default theme?! Did you finish the new blog??? Dear reader, no, I have not. I’m trying out some themes and taking a stab at CSS and brand.yml, but none of those things are ready for Prime Time yet.</p>
 </section>
 <section id="wrap-up" class="level1">
 <h1>Wrap Up</h1>
-<p>What blog engine do you use? Do you like the Quarto style of blog, or still use Rmarkdown <code>blogdown</code> or something else? Let’s talk about it on blue-sky <span class="citation" data-cites="eringrand">@eringrand</span>. (…because I have <em>not</em> added comments capabilities to this blog yet!)</p>
+<p>What blog engine do you use? Do you like the Quarto style of blog, or still use Rmarkdown <code>blogdown</code> or something else? Let’s talk about it on bluesky (Find me <span class="citation" data-cites="eringrand">@eringrand</span>, because I have <em>not</em> added comments capabilities to this blog yet!)</p>
 
 
 </section>
