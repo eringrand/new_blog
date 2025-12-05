@@ -6,3 +6,4 @@
 **/*.quarto_ipynb
 new_blog.Rproj
 _site
+.DS_Store
