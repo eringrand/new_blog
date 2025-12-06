@@ -704,9 +704,7 @@ font-style: inherit;">anti_join</span>(students, dupes_remove) </span></code></p
 </section>
 
  ]]></description>
-  <category>data science</category>
-  <category>R</category>
-  <category>presentation</category>
+  <category>duplicate data</category>
   <guid>https://eringrand.github.io/posts/cleaning_data_in_r/</guid>
   <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
   <media:content url="https://eringrand.github.io/posts/cleaning_data_in_r/clean_data.jpeg" medium="image" type="image/jpeg"/>
@@ -1192,7 +1190,6 @@ font-style: inherit;">"-"</span>))</span>
  ]]></description>
   <category>sentiment</category>
   <category>tidytext</category>
-  <category>R</category>
   <guid>https://eringrand.github.io/posts/reviewing_my_old_live_journal_posts/</guid>
   <pubDate>Tue, 28 Jun 2022 00:00:00 GMT</pubDate>
   <media:content url="https://static.wikia.nocookie.net/disney/images/1/1c/Profile_-_Eeyore.png" medium="image" type="image/png"/>
@@ -1321,7 +1318,6 @@ font-style: inherit;">"-"</span>))</span>
 </section>
 
  ]]></description>
-  <category>R</category>
   <category>twitter</category>
   <guid>https://eringrand.github.io/posts/twitters_favorite_lesser_known_packages/</guid>
   <pubDate>Tue, 30 Jun 2020 00:00:00 GMT</pubDate>
@@ -1822,6 +1818,7 @@ font-style: inherit;">"eringrand/astropic"</span>)</span></code></pre></div></di
 
  ]]></description>
   <category>tidytext</category>
+  <category>astronomy</category>
   <guid>https://eringrand.github.io/posts/scraping_apod_descriptions/</guid>
   <pubDate>Sat, 21 Apr 2018 00:00:00 GMT</pubDate>
   <media:content url="https://eringrand.github.io/posts/scraping_apod_descriptions/apod-logo.jpg" medium="image" type="image/jpeg"/>
@@ -2131,7 +2128,6 @@ font-style: inherit;">"2018-02-7-facesofrstudioconf.jpg"</span>)</span></code></
 
 
  ]]></description>
-  <category>R</category>
   <category>twitter</category>
   <category>conference</category>
   <guid>https://eringrand.github.io/posts/faces_of_rstudioconf/</guid>
@@ -2405,10 +2401,9 @@ font-style: inherit;">map_dfr</span>(files, prep_nys_files)</span></code></pre><
 </section>
 
  ]]></description>
-  <category>R</category>
-  <category>data science</category>
   <category>education</category>
   <category>rladies</category>
+  <category>duplicate data</category>
   <guid>https://eringrand.github.io/posts/r_in_the_world_of_education/</guid>
   <pubDate>Sat, 30 Dec 2017 00:00:00 GMT</pubDate>
   <media:content url="https://eringrand.github.io/posts/r_in_the_world_of_education/DQ4lewSWAAATBry.jpeg" medium="image" type="image/jpeg"/>
@@ -2618,7 +2613,6 @@ font-style: inherit;">400</span>)</span></code></pre></div></div>
 
 
  ]]></description>
-  <category>R</category>
   <category>sentiment</category>
   <category>tidytext</category>
   <category>LBD</category>
@@ -4035,10 +4029,9 @@ font-style: inherit;">element_blank</span>())</span></code></pre></div></div>
 </section>
 
  ]]></description>
-  <category>R</category>
   <category>rladies</category>
-  <category>R</category>
   <category>tidytext</category>
+  <category>sentiment</category>
   <category>LBD</category>
   <guid>https://eringrand.github.io/posts/text_analysis_of_the_lizzie_bennet_diaries/</guid>
   <pubDate>Tue, 02 May 2017 00:00:00 GMT</pubDate>
@@ -4223,9 +4216,7 @@ So I can ______ </code></pre>
 
  ]]></description>
   <category>conference</category>
-  <category>R</category>
   <category>rladies</category>
-  <category>R</category>
   <guid>https://eringrand.github.io/posts/new_york_rstats_conference/</guid>
   <pubDate>Sun, 30 Apr 2017 00:00:00 GMT</pubDate>
   <media:content url="https://pbs.twimg.com/media/C-CEwTYXoAAqppX.jpg:large" medium="image"/>
@@ -4669,7 +4660,6 @@ font-style: inherit;">element_blank</span>()) </span></code></pre></div></div>
   <category>visualization</category>
   <category>data science</category>
   <category>python</category>
-  <category>R</category>
   <guid>https://eringrand.github.io/posts/graphics_and_plots_in_science/</guid>
   <pubDate>Tue, 24 Mar 2015 00:00:00 GMT</pubDate>
   <media:content url="https://eringrand.github.io/posts/graphics_and_plots_in_science/spectrapel.png" medium="image" type="image/png" height="144" width="144"/>
