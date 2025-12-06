@@ -2,7 +2,7 @@
 title: Scraping APOD Descriptions
 author: Erin Grand
 date: 2018-04-21
-categories: [tidytext]
+categories: [tidytext, astronomy]
 image: 'apod-logo.jpg'
 ---
 

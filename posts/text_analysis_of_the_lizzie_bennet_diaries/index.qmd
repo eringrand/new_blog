@@ -2,7 +2,7 @@
 title: Text Analysis of The Lizzie Bennet Diaries
 author: Erin Grand
 date: 2017-05-02
-categories: [R, rladies, R, tidytext, LBD]
+categories: [rladies, tidytext, sentiment, LBD]
 image: http://media3.giphy.com/media/10MjSRjJxjc6XK/giphy-downsized.gif
 ---
 

@@ -2,7 +2,7 @@
 title: Graphics in Science
 author: Erin Grand
 date: 2015-03-24
-categories: [visualization, data science, python, R]
+categories: [visualization, data science, python]
 image: 'spectrapel.png'
 ---
 

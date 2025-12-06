@@ -2,7 +2,7 @@
 title: R in the World of Education
 author: Erin Grand
 date: 2017-12-30
-categories: [R, data science, education, rladies]
+categories: [education, rladies, duplicate data]
 image: 'DQ4lewSWAAATBry.jpeg'
 ---
 

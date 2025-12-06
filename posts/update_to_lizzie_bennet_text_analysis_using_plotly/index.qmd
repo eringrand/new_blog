@@ -2,7 +2,7 @@
 title: Update to Lizzie Bennet Text Analysis Using Plotly
 author: Erin Grand
 date: 2017-05-31
-categories: [R, sentiment, tidytext, LBD, plotly, rladies]
+categories: [sentiment, tidytext, LBD, plotly, rladies]
 image: 'newplot.png'
 ---
 

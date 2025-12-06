@@ -2,7 +2,7 @@
 title: Reviewing my old live journal posts
 author: Erin Grand
 date: 2022-06-28
-categories: [sentiment, tidytext, R]
+categories: [sentiment, tidytext]
 image: 'https://static.wikia.nocookie.net/disney/images/1/1c/Profile_-_Eeyore.png'
 ---
 

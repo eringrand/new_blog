@@ -2,7 +2,7 @@
 title: Best Practices for Cleaning Data in R
 author: Erin Grand
 date: 2025-11-14
-categories: [data science, R, presentation]
+categories: [duplicate data]
 image: 'clean_data.jpeg'
 ---
 

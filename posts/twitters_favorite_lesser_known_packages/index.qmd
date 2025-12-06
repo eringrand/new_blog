@@ -2,7 +2,7 @@
 title: Twitter's Favorite Lesser Known Packages
 author: Erin Grand
 date: 2020-06-30
-categories: [R, twitter]
+categories: [twitter]
 image: 'logo.jpg'
 ---
 

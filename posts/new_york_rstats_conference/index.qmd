@@ -2,7 +2,7 @@
 title: New York Rstats Conference
 author: Erin Grand
 date: 2017-04-30
-categories: [conference, R, rladies, R]
+categories: [conference, rladies]
 image: https://pbs.twimg.com/media/C-CEwTYXoAAqppX.jpg:large
 ---
 

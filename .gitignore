@@ -7,3 +7,5 @@
 new_blog.Rproj
 _site
 .DS_Store
+drafts/
+posts/.DS_Store
